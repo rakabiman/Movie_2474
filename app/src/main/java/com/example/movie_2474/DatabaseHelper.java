@@ -32,7 +32,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String sql =
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        COLUMN_IMAGE + " BLOB," +
+                        COLUMN_IMAGE + " TEXT," +
                         COLUMN_TITLE + " TEXT," +
                         COLUMN_OVERVIEW + " TEXT," +
                         COLUMN_DATE + " DATE" +
@@ -58,7 +58,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c != null && c.moveToFirst()) {
             do {
                 Movie movie = new Movie();
-                
+
                 movie.setId(Integer.parseInt(c.getString(0)));
                 movie.setPosterPath(c.getString(1));
                 movie.setTitle(c.getString(2));
@@ -66,6 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 movie.setReleaseDate(c.getString(4));
 
                 listMovie.add(movie);
+
             } while (c.moveToNext());
         }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class DatabaseAdapter extends RecyclerView.Adapter<DatabaseAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         movie = listMovie.get(position);
 
         holder.txtTitledb.setText(movie.getTitle());
@@ -43,8 +44,9 @@ public class DatabaseAdapter extends RecyclerView.Adapter<DatabaseAdapter.ViewHo
         holder.txtOverviewdb.setText(movie.getOverview());
 
         Glide.with(holder.itemView)
-                .load("https://image.tmdb.org/t/p/w200/"+movie.getPosterPath())
+                .load(movie.getPosterPath())
                 .into(holder.imgPosterdb);
+
     }
 
     @Override

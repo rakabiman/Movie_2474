@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.example.movie_2474.DatabaseAdapter;
 import com.example.movie_2474.DatabaseHelper;
-import com.example.movie_2474.MovieAdapter;
 import com.example.movie_2474.R;
 import com.example.movie_2474.model.Movie;
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class FavoriteFragment extends Fragment {
 
-    RecyclerView rvMovieFav;
+    RecyclerView rvMoviedb;
     private ArrayList<Movie> listMovie;
 
     @Override
@@ -28,16 +28,16 @@ public class FavoriteFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
 
-        rvMovieFav = view.findViewById(R.id.rv_movie_fav);
+        rvMoviedb = view.findViewById(R.id.rv_movie_fav);
 
-        rvMovieFav.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvMoviedb.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        DatabaseHelper db = new DatabaseHelper(getActivity());
+        DatabaseHelper db = new DatabaseHelper(getContext());
         listMovie = db.getAllMovie();
 
         if (listMovie.size() != 0) {
-            MovieAdapter adapter = new MovieAdapter(getActivity(), listMovie);
-            rvMovieFav.setAdapter(adapter);
+            DatabaseAdapter adapter = new DatabaseAdapter(getContext(), listMovie);
+            rvMoviedb.setAdapter(adapter);
         }
 
         return view;

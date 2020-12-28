@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.movie_2474.model.Movie;
-import com.example.movie_2474.ui.main.FavoriteFragment;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -52,19 +51,22 @@ public class DetailActivity extends AppCompatActivity {
         btnFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String title = title_detail.getText().toString();
                 String date = date_detail.getText().toString();
                 String overview = overview_detail.getText().toString();
 
                 DatabaseHelper db = new DatabaseHelper(getApplicationContext());
                 Movie mv = new Movie();
+
+                mv.setPosterPath("https://image.tmdb.org/t/p/w200/"+movie.getPosterPath());
                 mv.setTitle(title);
                 mv.setReleaseDate(date);
                 mv.setOverview(overview);
 
                 db.addMovie(mv);
 
-                Intent main = new Intent(DetailActivity.this, FavoriteFragment.class);
+                Intent main = new Intent(DetailActivity.this,MainActivity.class);
                 startActivity(main);
             }
         });
